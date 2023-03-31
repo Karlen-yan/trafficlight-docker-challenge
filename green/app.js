@@ -39,7 +39,7 @@ app.use(ipfilter(denied_ip, { mode: 'deny' }));
 
 module.exports = app;
 
-app.use(favicon(path.join(__dirname,'views','favicon.ico')));
+app.use(favicon(path.join(__dirname, './views', 'favicon.ico')));
 
 // Assign route
 app.use('/', (req, res) => {

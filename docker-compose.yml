@@ -1,35 +1,32 @@
-version: '3.9'
+# version: '3.9'
 services:
   red-app:
     image: trafficlight/red
     container_name: red-app
     networks:
       - traffic-light
-    ports:
-      - 4000:80
 
   yellow-app:
     image: trafficlight/yellow
     container_name: yellow-app
     networks:
       - traffic-light
-    ports:
-      - 3000:80
   green-app:
     image: trafficlight/green
     container_name: green-app
     networks:
       - traffic-light
-    ports:
-      - 5000:80
+
   proxy:
-    image: nginx
+    image: trafficlight/proxy
     container_name: proxy
     networks:
-      - traffic-light
+    - traffic-light
     ports:
-        - 80:80
-    
+      - 3000:3000
+      - 4000:4000
+      - 5000:5000
+
     depends_on:
       - red-app
       - yellow-app
@@ -37,4 +34,5 @@ services:
 
 networks:
   traffic-light:
+    external: true # Si la red ya existe 
     driver: bridge
