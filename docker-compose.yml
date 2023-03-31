@@ -5,27 +5,29 @@ services:
     container_name: red-app
     networks:
       - traffic-light
-
+  
   yellow-app:
     image: trafficlight/yellow
     container_name: yellow-app
     networks:
       - traffic-light
+  
   green-app:
     image: trafficlight/green
     container_name: green-app
     networks:
       - traffic-light
-
+    
   proxy:
     image: trafficlight/proxy
     container_name: proxy
     networks:
     - traffic-light
     ports:
-      - 3000:3000
-      - 4000:4000
-      - 5000:5000
+     - 3000:3000
+      # - 3000:3000
+      # - 4000:4000
+      # - 5000:5000
 
     depends_on:
       - red-app
